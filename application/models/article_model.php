@@ -51,7 +51,7 @@ class article_model extends CI_model
 	function exist($id)
 	{
 		$res=$this->db->query("select id from article where id=$id limit 1")->row_array();
-		if(empty($res)){return false;}elss{return true;}
+		if(empty($res)){return false;}else{return true;}
 	}
 	
 	function post($array)
