@@ -2,16 +2,18 @@
 
 //update by L 2012.7.20
 //更新内容:
-//add exist()
-//add post()
-//add remove()
-//add edit()
+//add get_info()
 
 //----------------------------函数列表----------------------------
 /*
+ * get_info($id)		get article info
+ * @id			article id
+ * @return		error inf|article info
+ * */
+/*
  * exist($id)		determine whether the article exist
- * @id		article id
- * @return 	true|false
+ * @id			article id
+ * @return 		true|false
  * */
 /*
  * post($array)		post article
@@ -39,6 +41,13 @@
 
 class article_model extends CI_model
 {
+	function get_info($id)
+	{
+		if(!$this->article_model->exist($id)){return "Error:文章不存在";}
+		$res=$this->db->query("select * from article where id=$id");
+		return $res->result_array();
+	}
+	
 	function exist($id)
 	{
 		$res=$this->db->query("select id from article where id=$id limit 1")->row_array();
