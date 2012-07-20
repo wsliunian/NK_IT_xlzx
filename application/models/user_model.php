@@ -206,7 +206,7 @@ class user_model extends CI_model
 		if(isset($array['nickname'])){
 			$nickname=$this->db->escape($array['nickname']);
 			$temp=$this->db->query("select id from teacher where nickname=$nickname limit 1")->row_array();
-			if(!empty($res)){return "Error:重复的昵称";}
+			if(!empty($temp)){return "Error:重复的昵称";}
 		}else{$nickname='nickname';}
 		if(isset($array['phone'])){$phone=$this->db->escape($array['phone']);}else{$phone='phone';}
 		if(isset($array['mail'])){$mail=$this->db->escape($array['mail']);}else{$mail='mail';}
